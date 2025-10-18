@@ -48,7 +48,8 @@ setplot dc1
   * **Saturation region:** Id becomes constant beyond Vds ≈ Vgs - Vth.
 * Threshold voltage and saturation onset marked on the plot.
 
-> ![Id-Vds Plot](27319.jpg)
+> ![Id-Vds Plot]
+
 
 ---
 
