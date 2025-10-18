@@ -49,7 +49,7 @@ setplot dc1
 * Threshold voltage and saturation onset marked on the plot.
 
 > ![Id-Vds Plot]
-
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/dc94be9d-3119-41ee-888b-f1d6daa1ef56" />
 
 ---
 
