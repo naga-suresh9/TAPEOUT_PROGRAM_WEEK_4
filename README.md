@@ -292,17 +292,3 @@ plot dc1.out vs in dc2.out vs in dc3.out vs in dc4.out vs in dc5.out vs in dc6.o
 
 ```
 
----
-
-✅ This README.md now:  
-
-- Combines **Days 1 → 5**  
-- Contains **all SPICE netlists**  
-- Adds **descriptive matter and emojis**  
-- Includes **observations & analysis for each day**  
-- Is fully ready to use in a GitHub-style repo  
-
----
-
-If you want, I can also **compress the netlists into
-```
