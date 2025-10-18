@@ -109,10 +109,10 @@ plot dc1.out vs in dc2.out vs in dc3.out vs in dc4.out vs in dc5.out vs in dc6.o
   * Vm shift for each Vdd
   * Output HIGH/LOW changes
   * Impact on NML & NMH
-
+Device Variation
 <img width="1920" height="1080" alt="day_05_inv_supplyvariation_Wp1_Wn036" src="https://github.com/user-attachments/assets/d1022625-9c5a-4034-a2e2-707a06c429f4" />
 <img width="1751" height="1035" alt="supplyvariation_output" src="https://github.com/user-attachments/assets/8b12b42f-a002-4af1-ac33-b1a5db975d8a" />
-
+Power-Supply Variation Sweep
 <img width="1920" height="1080" alt="day5_pfet_idvgs_" src="https://github.com/user-attachments/assets/4887abc9-0d3b-45cf-96b9-ab20b4a7b5ed" />
 <img width="1751" height="1035" alt="pfet_output" src="https://github.com/user-attachments/assets/7a6add77-27c2-45ba-be95-5ed82e6f5e6e" />
 
