@@ -50,7 +50,7 @@ setplot dc1
 
 > ![Id-Vds Plot]
 <img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/dc94be9d-3119-41ee-888b-f1d6daa1ef56" />
-
+<img width="1681" height="995" alt="Image" src="https://github.com/user-attachments/assets/182c0929-0313-49bf-b727-15bd36e67897" />
 ---
 
 ## Tabulated Results
@@ -95,15 +95,3 @@ setplot dc1
 
 ```
 
----
-
-I can also make a **fully ready folder structure README** including:
-
-- `schematic/`  
-- `plots/`  
-- `netlist/`  
-
-so it’s **GitHub-ready with all files organized**.  
-
-Do you want me to do that next?
-```
