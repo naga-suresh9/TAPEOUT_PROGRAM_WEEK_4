@@ -96,12 +96,14 @@ setplot dc1
   * **Linear Region:** Current rises almost linearly with Vds.
   * **Saturation Region:** Current becomes constant after Vds ≈ Vgs − Vth.
 
+<img width="1920" height="1080" alt="day2_nfet_idvds_L015_W039 spice" src="https://github.com/user-attachments/assets/1fdca394-a7c6-43a2-9d66-11d8c6621c10" />
+<img width="1681" height="995" alt="day2_nfet_idvds_output" src="https://github.com/user-attachments/assets/fa15968b-11e0-4b1e-aab8-92b82cff9c05" />
 * **Id–Vgs** curve helps in **Vth extraction** using the slope–intercept method.
+<img width="1920" height="1080" alt="day2_nfet_idvgs_L015_W039 spice" src="https://github.com/user-attachments/assets/7622cc24-ecdf-47d6-b2e5-3cdec80eb6ec" />
+<img width="1681" height="995" alt="day2_nfet_idvgs_output" src="https://github.com/user-attachments/assets/b8937eb3-33e5-473b-8092-1a9119ab7ef5" />
 
-📸 *Attach ngspice simulation graphs below:*
 
-> <img width="800" alt="IdVds_Plot" src="your_image_link_here" />  
-> <img width="800" alt="IdVgs_Plot" src="your_image_link_here" />
+
 
 ---
 
