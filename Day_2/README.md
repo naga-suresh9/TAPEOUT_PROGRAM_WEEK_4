@@ -1,29 +1,36 @@
-# 🌞 **Day 2 — Sky130 NMOS Device Characterization: Id–Vds & Id–Vgs Analysis** ⚡
+# 🌞 **Day 2 — Sky130 NMOS Device Characterization: Id–Vds & Id–Vgs Analysis**
 
 ---
 
 ## 🧠 **Introduction / Background**
 
-In this experiment, we analyze the electrical behavior of the **NMOS transistor** using **Sky130 1.8 V models**.
-The goal is to explore how the **drain current (Id)** responds to changes in both **drain-source voltage (Vds)** and **gate-source voltage (Vgs)**.
+This module focuses on characterizing an **NMOS transistor** using the **Sky130 1.8 V PDK models**, analyzing both **Id–Vds** and **Id–Vgs** behavior.
 
-This helps us to:
+At short channel lengths, electric fields in the channel can become significant, affecting carrier velocity and current saturation. Understanding these effects is critical for:
 
-* Identify **linear** and **saturation** regions in operation.
-* Estimate the **threshold voltage (Vth)** from the transfer curve.
-* Understand how transistor-level parameters affect **timing, delay**, and **switching speed** in CMOS logic circuits.
+* Drain current characteristics (**Id–Vds** and **Id–Vgs** curves)
+* Threshold voltage estimation (**Vth**)
+* Switching speed and transistor-level timing
+* Impacts on CMOS logic behavior and STA analysis
+
+### **Key Concepts Covered**
+
+* NMOS Id–Vds & Id–Vgs characteristics
+* Threshold voltage extraction from transfer curves
+* Identification of linear vs. saturation regions
+* Device behavior impact on timing and inverter switching
 
 ---
 
-## ⚙️ **SPICE Netlists**
+## 🧪 **Part A — Id–Vds Characteristics**
 
-### 🧩 **1️⃣ Id–Vds Characteristics Simulation**
+### **A1. SPICE Netlist — Id–Vds Sweep**
 
 ```spice
 *******************************************************
 * 📁 File: nfet_idvds.spice
-* 📗 Purpose: NMOS Id–Vds characteristics simulation
-* 📚 PDK: Sky130_fd_pr (1.8 V NMOS)
+* 📗 Purpose: NMOS Id–Vds characteristics
+* 📚 PDK: Sky130_fd_pr (1.8 V)
 *******************************************************
 
 * === Device Parameters ===
@@ -51,15 +58,27 @@ setplot dc1
 .end
 ```
 
+### **A2. Id–Vds Plot**
+
+<img width="1920" height="1080" alt="day2_nfet_idvds_L015_W039 spice" src="https://github.com/user-attachments/assets/1fdca394-a7c6-43a2-9d66-11d8c6621c10" />
+<img width="1681" height="995" alt="day2_nfet_idvds_output" src="https://github.com/user-attachments/assets/fa15968b-11e0-4b1e-aab8-92b82cff9c05" />
+
+* **Observation:**
+
+  * For small **Vds**, Id rises linearly → *Linear Region*
+  * For Vds ≈ Vgs − Vth, Id saturates → *Saturation Region*
+
 ---
 
-### 🧩 **2️⃣ Id–Vgs Characteristics (Threshold Extraction)**
+## 🧪 **Part B — Id–Vgs Characteristics & Vth Extraction**
+
+### **B1. SPICE Netlist — Id–Vgs Sweep**
 
 ```spice
 *******************************************************
 * 📁 File: nfet_idvgs.spice
-* 📗 Purpose: NMOS Id–Vgs characteristics and Vth extraction
-* 📚 PDK: Sky130_fd_pr (1.8 V NMOS)
+* 📗 Purpose: NMOS Id–Vgs characteristics
+* 📚 PDK: Sky130_fd_pr (1.8 V)
 *******************************************************
 
 * === Device Parameters ===
@@ -87,45 +106,35 @@ setplot dc1
 .end
 ```
 
----
+### **B2. Id–Vgs Plot**
 
-## 📊 **Plots & Figures**
-
-* **Id–Vds** curves for multiple **Vgs** values show two clear regions:
-
-  * **Linear Region:** Current rises almost linearly with Vds.
-  * **Saturation Region:** Current becomes constant after Vds ≈ Vgs − Vth.
-
-<img width="1920" height="1080" alt="day2_nfet_idvds_L015_W039 spice" src="https://github.com/user-attachments/assets/1fdca394-a7c6-43a2-9d66-11d8c6621c10" />
-<img width="1681" height="995" alt="day2_nfet_idvds_output" src="https://github.com/user-attachments/assets/fa15968b-11e0-4b1e-aab8-92b82cff9c05" />
-* **Id–Vgs** curve helps in **Vth extraction** using the slope–intercept method.
 <img width="1920" height="1080" alt="day2_nfet_idvgs_L015_W039 spice" src="https://github.com/user-attachments/assets/7622cc24-ecdf-47d6-b2e5-3cdec80eb6ec" />
 <img width="1681" height="995" alt="day2_nfet_idvgs_output" src="https://github.com/user-attachments/assets/b8937eb3-33e5-473b-8092-1a9119ab7ef5" />
 
+* **Observation:**
 
-
+  * Threshold voltage (**Vth**) = **0.41 V**
+  * Short-channel device deviates from quadratic Id–Vgs behavior due to velocity saturation
 
 ---
 
 ## 📐 **Tabulated Results**
 
-| ⚙️ Parameter | 🧩 Description                   | 📏 Value        |
-| ------------ | -------------------------------- | --------------- |
-| **Vth**      | Threshold voltage (from Id–Vgs)  | [your value] V  |
-| **Id_sat**   | Saturation current (Vgs = 1.8 V) | [your value] µA |
-| **Vds(sat)** | Saturation onset (≈ Vgs − Vth)   | [your value] V  |
-
-*(Insert your simulation data here!)*
+| ⚙️ Parameter | 🧩 Description                   | 📏 Value                 |
+| ------------ | -------------------------------- | ------------------------ |
+| **Vth**      | Threshold voltage (from Id–Vgs)  | 0.41 V                   |
+| **Id_sat**   | Saturation current (Vgs = 1.8 V) | Saturated Earlier / plot |
+| **Vds(sat)** | Saturation onset (≈ Vgs − Vth)   | 1.39 V                   |
 
 ---
 
 ## 🔍 **Observations / Analysis**
 
-✅ When **Vds** is small → NMOS operates in **linear region**, and Id ∝ Vds.
-✅ As **Vds** approaches (Vgs − Vth) → channel pinches off → **saturation region** begins.
-✅ Increasing **Vgs** enhances channel charge → higher Id.
-✅ **Vth** determines when transistor begins strong conduction.
-✅ These behaviors directly influence **logic threshold** and **timing delay** in digital circuits.
+✅ Small **Vds** → Linear Region (Id ∝ Vds)
+✅ Vds ≈ Vgs − Vth → Saturation Region begins
+✅ Increasing **Vgs** → stronger channel → higher Id
+✅ **Vth** determines onset of strong conduction
+✅ Linear and saturation behaviors directly affect **logic threshold** and **timing delay**
 
 ---
 
@@ -133,18 +142,18 @@ setplot dc1
 
 📈 In **Static Timing Analysis (STA)**:
 
-* **Threshold variation (Vth)** → causes delay uncertainty.
-* **Drive current (Id_sat)** → affects signal transition time.
-* **Device geometry** and **supply voltage** → change switching speed & critical path delay.
+* Variations in **Vth** → delay uncertainty
+* **Drive current (Id_sat)** → signal transition time
+* **Device geometry & supply voltage** → affect switching speed & critical path delays
 
 ---
 
 ## 🏁 **Conclusions**
 
-⭐ The experiment clearly demonstrates NMOS transistor behavior under different biasing conditions.
-⭐ **Id–Vds** curves reveal how the device transitions from linear to saturation.
-⭐ **Vth extraction** helps estimate device switching properties.
-⭐ These transistor-level insights form the foundation for analyzing **timing**, **power**, and **performance** in CMOS logic design.
+⭐ NMOS transistor behavior under various biases is clearly demonstrated
+⭐ Id–Vds curves reveal linear → saturation transition
+⭐ Vth extraction provides critical device information
+⭐ Insights are foundational for analyzing **timing, power, and performance** in CMOS logic
 
 ---
 
