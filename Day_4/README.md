@@ -72,23 +72,18 @@ display
 <img width="1920" height="1080" alt="day_4" src="https://github.com/user-attachments/assets/b104adec-3f28-4a01-a57b-c59f73499368" />
 <img width="1751" height="1035" alt="noisemargin" src="https://github.com/user-attachments/assets/cc48faf1-7780-442d-847a-d4559d93d19f" />
 
-
-
-
 ---
 
 ## 📋 **Tabulated Results**
 
-| Parameter | Description        | Value          |
-| --------- | ------------------ | -------------- |
-| **VIL**   | Max input LOW      | [your value] V |
-| **VIH**   | Min input HIGH     | [your value] V |
-| **VOL**   | Output LOW at VIL  | [your value] V |
-| **VOH**   | Output HIGH at VIH | [your value] V |
-| **NML**   | Noise Margin Low   | [your value] V |
-| **NMH**   | Noise Margin High  | [your value] V |
-
-*(Replace `[your value]` with simulation results.)*
+| Parameter | Description        | Value (V) |
+| --------- | ------------------ | --------- |
+| **VIL**   | Max input LOW      | 0.7636    |
+| **VIH**   | Min input HIGH     | 0.9800    |
+| **VOL**   | Output LOW at VIL  | 0.1101    |
+| **VOH**   | Output HIGH at VIH | 1.7188    |
+| **NML**   | Noise Margin Low   | 0.6535    |
+| **NMH**   | Noise Margin High  | 0.7388    |
 
 ---
 
@@ -97,6 +92,7 @@ display
 * NML and NMH quantify **logic robustness** against input noise.
 * Larger noise margins → **more tolerant inverter**, less prone to misinterpretation.
 * **Transistor sizing (Wp/Wn)** affects Vm → shifts VIH/VIL → changes noise margins.
+* The results confirm **balanced design** with high static robustness.
 * Useful for **STA and design verification**, ensuring reliable operation under variations.
 
 ---
@@ -116,5 +112,3 @@ display
 * GitHub: [Sky130CircuitDesignWorkshop](https://github.com/kunalg123/sky130CircuitDesignWorkshop)
 
 ---
-
-Do you want me to do that?
