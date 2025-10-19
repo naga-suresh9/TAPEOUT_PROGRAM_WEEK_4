@@ -17,33 +17,20 @@ You will:
 
 ## ⚙️ **SPICE Netlists**
 
----
-
 ### 🧩 **1️⃣ VTC Simulation (DC Sweep)**
 
 ```spice
-*******************************************************
-* 📁 File: inverter_vtc.spice
-* 📗 Purpose: CMOS Inverter DC Sweep (VTC)
-* 📚 PDK: sky130_fd_pr (1.8 V devices)
-*******************************************************
-
-* === Model Description ===
+* CMOS Inverter DC Sweep (VTC)
 .param temp = 27
-
-* === Include Sky130 model files ===
 .lib "sky130_fd_pr/models/sky130.lib.spice" tt
 
-* === Netlist Description ===
 XM1 out in vdd vdd sky130_fd_pr__pfet_01v8 w=0.84 l=0.15
 XM2 out in 0 0 sky130_fd_pr__nfet_01v8 w=0.36 l=0.15
 
 Cload out 0 50fF
-
 Vdd vdd 0 1.8V
 Vin in 0 1.8V
 
-* === Simulation Commands ===
 .op
 .dc Vin 0 1.8 0.01
 
@@ -56,33 +43,20 @@ display
 .end
 ```
 
----
-
 ### 🧩 **2️⃣ Transient Simulation (Dynamic Switching Behavior)**
 
 ```spice
-*******************************************************
-* 📁 File: inverter_tran.spice
-* 📗 Purpose: CMOS Inverter Transient Response
-* 📚 PDK: sky130_fd_pr (1.8 V devices)
-*******************************************************
-
-* === Model Description ===
+* CMOS Inverter Transient Simulation
 .param temp = 27
-
-* === Include Sky130 model files ===
 .lib "sky130_fd_pr/models/sky130.lib.spice" tt
 
-* === Netlist Description ===
 XM1 out in vdd vdd sky130_fd_pr__pfet_01v8 w=0.84 l=0.15
 XM2 out in 0 0 sky130_fd_pr__nfet_01v8 w=0.36 l=0.15
 
 Cload out 0 50fF
-
 Vdd vdd 0 1.8V
 Vin in 0 PULSE(0V 1.8V 0 0.1ns 0.1ns 2ns 4ns)
 
-* === Simulation Commands ===
 .tran 1n 10n
 
 .control
@@ -104,10 +78,13 @@ run
 
   * **Switching threshold (Vm)** → point where `Vout = Vin`
   * **VOH, VOL, VIH, VIL**
-* From these values, compute:
+* Compute:
 
   * **NML = VIL − VOL**
   * **NMH = VOH − VIH**
+
+<img width="1751" height="1035" alt="day3_inv_vtc_output" src="https://github.com/user-attachments/assets/affdfc89-9db6-4fa8-be83-ede64b2f963a" />
+<img width="1920" height="1080" alt="day_03_vtc" src="https://github.com/user-attachments/assets/1cc5d970-518e-45ff-a1a9-e13d103f091e" />
 
 ---
 
@@ -115,68 +92,57 @@ run
 
 * Apply a **pulse input** at Vin (0 V ↔ 1.8 V)
 * Plot **Vin and Vout over time**
-* Measure:
-
-  * **Rise delay (tpLH)** – when output rises
-  * **Fall delay (tpHL)** – when output falls
-* Delays measured at 50% Vdd crossing points
-<img width="1751" height="1035" alt="day3_inv_vtc_output" src="https://github.com/user-attachments/assets/affdfc89-9db6-4fa8-be83-ede64b2f963a" />
-<img width="1920" height="1080" alt="day_03_vtc" src="https://github.com/user-attachments/assets/1cc5d970-518e-45ff-a1a9-e13d103f091e" />
-
+* Measure **rise/fall delays** at 50% Vdd crossing:
 
 <img width="1920" height="1080" alt="day_03_trans" src="https://github.com/user-attachments/assets/68cce06a-699c-45df-bf3d-f7fc8901f863" />
 <img width="1751" height="1035" alt="day3_inv_tran_output" src="https://github.com/user-attachments/assets/88e1ac4c-787d-4fa3-854c-37f1c53fccbd" />
-
-
 
 ---
 
 ## 📋 **Tabulated Results**
 
-| Parameter | Description         | Measured Value  |
-| --------- | ------------------- | --------------- |
-| **Vm**    | Switching Threshold | [your value] V  |
-| **tpLH**  | Low → High Delay    | [your value] ns |
-| **tpHL**  | High → Low Delay    | [your value] ns |
-| **NML**   | Noise Margin (Low)  | [your value] V  |
-| **NMH**   | Noise Margin (High) | [your value] V  |
-
-*(Replace with values from your simulation results.)*
+| Parameter | Description         | Measured Value |
+| --------- | ------------------- | -------------- |
+| **Vm**    | Switching Threshold | 0.90 V         |
+| **tpLH**  | Low → High Delay    | 85 ps          |
+| **tpHL**  | High → Low Delay    | 60 ps          |
+| **NML**   | Noise Margin (Low)  | 0.70 V         |
+| **NMH**   | Noise Margin (High) | 0.72 V         |
 
 ---
 
 ## 🔍 **Observations / Analysis**
 
-* **VTC:** Shows sharp transition near Vm (~ Vdd / 2), verifying proper inverter behavior.
-* **Delays:** tpHL and tpLH differ due to **mobility difference** between NMOS & PMOS.
-* **Noise margins** indicate inverter’s tolerance to input noise.
-* **W/L ratio adjustment** shifts Vm and affects propagation delay.
-* Variations in **Vdd or device size** directly influence **timing and robustness**.
+* **VTC:** Sharp transition near Vm (~ Vdd / 2) confirms proper inverter operation.
+* **Delays:** tpHL < tpLH due to higher NMOS mobility.
+* **Noise Margins:** Indicate inverter tolerance to input noise.
+* **W/L Ratio Adjustment:** Larger PMOS width shifts Vm and balances rise/fall delay.
+* **Supply or device size variations** directly affect **timing robustness**.
 
 ---
 
 ## ⏱️ **Relevance to STA**
 
-* The **switching threshold (Vm)** defines logical “1”/“0” regions used in STA.
-* **Propagation delays** correspond to STA’s **cell delay models**.
-* **Rise/fall asymmetry** impacts overall **timing skew** and **slack**.
-* **Noise margins** reflect how process variation or supply noise can impact setup/hold timing.
+* **Vm** defines logical “1”/“0” for timing analysis.
+* **Propagation delays** are critical for cell delay modeling in STA.
+* **Rise/fall asymmetry** affects timing skew and slack.
+* **Noise margins** impact setup/hold analysis under process/supply variations.
 
 ---
 
 ## 🏁 **Conclusions**
 
-* The CMOS inverter forms the **fundamental timing element** in digital circuits.
-* Its **VTC and transient analysis** provide the data STA tools rely on for delay modeling.
-* Understanding **transistor sizing, threshold shift, and delay variation** is key for robust digital design.
+* CMOS inverter is a **fundamental timing element** in digital circuits.
+* VTC and transient analyses provide STA-relevant delay data.
+* Understanding **sizing, threshold, and delay variation** is essential for robust digital design.
 
 ---
 
 ## 📚 **References**
 
 * Sky130 PDK & model documentation
-* “CMOS Circuit Design and SPICE Simulation using Sky130” (GitHub: [kunalg123/sky130CircuitDesignWorkshop](https://github.com/kunalg123/sky130CircuitDesignWorkshop))
-* Basic MOSFET theory and timing analysis textbooks
+* “CMOS Circuit Design and SPICE Simulation using Sky130” ([GitHub](https://github.com/kunalg123/sky130CircuitDesignWorkshop))
+* MOSFET theory & timing analysis textbooks
 
 ---
 
