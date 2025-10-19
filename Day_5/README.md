@@ -10,13 +10,8 @@ In this experiment, we evaluate how **supply voltage (VDD)** and **transistor si
 
 * Observe **VTC (Voltage Transfer Characteristic)** shift under **VDD variation**
 * Study **device sizing impact** on **switching threshold** and **noise margins**
-* Evaluate **inverter robustness** under variations
+* Evaluate inverter **robustness** under variations
 * Connect device-level behavior to **STA margins and critical path timing**
-
-**Why it matters:**
-
-* Real-world circuits face **supply fluctuations** and **device fabrication variations**
-* Understanding these effects is crucial for **Static Timing Analysis (STA)** and **robust digital design**
 
 ---
 
@@ -25,12 +20,6 @@ In this experiment, we evaluate how **supply voltage (VDD)** and **transistor si
 ### 🧩 **1️⃣ Device Sizing Variation**
 
 ```spice
-*******************************************************
-* 📁 File: inverter_device_variation_day5.spice
-* 📗 Purpose: CMOS inverter VTC with W/L variations
-* 📚 PDK: sky130_fd_pr (1.8 V devices)
-*******************************************************
-
 .param temp=27
 .lib "sky130_fd_pr/models/sky130.lib.spice" tt
 
@@ -58,12 +47,6 @@ display
 ### 🧩 **2️⃣ Power Supply Variation**
 
 ```spice
-*******************************************************
-* 📁 File: inverter_supply_variation_day5.spice
-* 📗 Purpose: CMOS inverter VTC under VDD variation
-* 📚 PDK: sky130_fd_pr (1.8 V devices)
-*******************************************************
-
 .param temp=27
 .lib "sky130_fd_pr/models/sky130.lib.spice" tt
 
@@ -86,8 +69,7 @@ dowhile voltagesupplyvariation < 6
     let voltagesupplyvariation = voltagesupplyvariation + 1
 end
 
-plot dc1.out vs in dc2.out vs in dc3.out vs in dc4.out vs in dc5.out vs in dc6.out vs in \
-xlabel "Input Voltage (V)" ylabel "Output Voltage (V)" title "Inverter DC characteristics vs Supply Voltage"
+plot dc1.out vs in dc2.out vs in dc3.out vs in dc4.out vs in dc5.out vs in dc6.out vs in xlabel "Input Voltage (V)" ylabel "Output Voltage (V)" title "Inverter DC characteristics vs Supply Voltage"
 .endc
 
 .end
@@ -97,26 +79,33 @@ xlabel "Input Voltage (V)" ylabel "Output Voltage (V)" title "Inverter DC charac
 
 ## 📊 **Plots & Figures**
 
-* **Device Variation** → VTC curves for different W/L ratios
-* **Supply Variation** → VTC curves as VDD decreases (1.8 V → 0.8 V in 0.2 V steps)
-* Annotate **Vm shift**, **NMH**, **NML**, and **logic levels**
+### 1️⃣ Device Variation – VTC
 
-Device Variation Example: <img width="1920" height="1080" alt="device_variation_day5" src="https://github.com/user-attachments/assets/d1022625-9c5a-4034-a2e2-707a06c429f4" />
+<img width="1920" height="1080" alt="device_variation_vtc" src="YOUR_IMAGE_LINK_1" />
 
-Supply Variation Example: <img width="1920" height="1080" alt="supply_variation_day5" src="https://github.com/user-attachments/assets/4887abc9-0d3b-45cf-96b9-ab20b4a7b5ed" />
+### 2️⃣ Device Variation – Output
+
+<img width="1751" height="1035" alt="device_variation_output" src="YOUR_IMAGE_LINK_2" />
+
+### 3️⃣ Supply Variation – VTC
+
+<img width="1920" height="1080" alt="supply_variation_vtc" src="YOUR_IMAGE_LINK_3" />
+
+### 4️⃣ Supply Variation – Output
+
+<img width="1751" height="1035" alt="supply_variation_output" src="YOUR_IMAGE_LINK_4" />
 
 ---
 
 ## 📋 **Tabulated Results**
 
-| Parameter       | VDD=1.8 V | VDD=1.6 V | VDD=1.4 V | VDD=1.2 V | VDD=1.0 V | VDD=0.8 V |
-| --------------- | --------- | --------- | --------- | --------- | --------- | --------- |
-| **Vm**          | 0.89 V    | 0.79 V    | 0.71 V    | 0.63 V    | 0.52 V    | 0.43 V    |
-| **NMH**         | 0.67 V    | 0.59 V    | 0.52 V    | 0.45 V    | 0.38 V    | 0.29 V    |
-| **NML**         | 0.68 V    | 0.61 V    | 0.53 V    | 0.46 V    | 0.39 V    | 0.30 V    |
-| **tPHL / tPLH** | 42 ps     | 51 ps     | 64 ps     | 78 ps     | 97 ps     | 126 ps    |
-| **Wp/Wn Ratio** | 1/0.36    | —         | —         | —         | —         | —         |
-| **Wp/Wn Ratio** | 7/0.42    | —         | —         | —         | —         | —         |
+| Parameter       | VDD=1.8 V       | VDD=1.6 V | VDD=1.4 V | VDD=1.2 V | VDD=1.0 V | VDD=0.8 V |
+| --------------- | --------------- | --------- | --------- | --------- | --------- | --------- |
+| **Vm**          | 0.89 V          | 0.79 V    | 0.71 V    | 0.63 V    | 0.52 V    | 0.43 V    |
+| **NMH**         | 0.67 V          | 0.59 V    | 0.52 V    | 0.45 V    | 0.38 V    | 0.29 V    |
+| **NML**         | 0.68 V          | 0.61 V    | 0.53 V    | 0.46 V    | 0.39 V    | 0.30 V    |
+| **tPHL / tPLH** | 42 ps           | 51 ps     | 64 ps     | 78 ps     | 97 ps     | 126 ps    |
+| **Wp/Wn Ratio** | 1/0.36 & 7/0.42 | —         | —         | —         | —         | —         |
 
 ---
 
@@ -138,7 +127,6 @@ Supply Variation Example: <img width="1920" height="1080" alt="supply_variation_
 
   * Lower VDD → slower cell → possible timing violations
   * Device variation → unbalanced delays, impacting critical path
-  * Helps define PVT corner analysis for robust chip design
 
 ---
 
@@ -147,7 +135,7 @@ Supply Variation Example: <img width="1920" height="1080" alt="supply_variation_
 * CMOS inverter robustness depends on **supply voltage** and **device sizing**
 * Lower VDD reduces **noise margins** and slows switching
 * PMOS/NMOS sizing adjustments can **compensate for variations**
-* These experiments provide insights for **STA, timing closure, and reliable digital design**
+* These insights are essential for **STA, timing closure, and reliable digital design**
 
 ---
 
@@ -159,3 +147,4 @@ Supply Variation Example: <img width="1920" height="1080" alt="supply_variation_
 * Sky130CircuitDesignWorkshop GitHub
 
 ---
+
