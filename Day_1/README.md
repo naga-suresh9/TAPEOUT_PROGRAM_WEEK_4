@@ -67,7 +67,7 @@ setplot dc1
 
 | ⚙️ Parameter              | 📏 Value        |
 | ------------------------- | --------------- |
-| 🧩 Extracted Vth          | [your value] V  |
+| 🧩 Extracted Vth          | ~0.45 V V  |
 | ⚡ Id_sat (typical)        | [your value] µA |
 | 📍 Vds @ saturation onset | [your value] V  |
 
