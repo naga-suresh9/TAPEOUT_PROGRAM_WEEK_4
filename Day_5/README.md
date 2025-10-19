@@ -9,7 +9,7 @@ In this experiment, we evaluate how **supply voltage (VDD)** and **transistor si
 **Objectives:**
 
 * Observe **VTC (Voltage Transfer Characteristic)** shift under **VDD variation**
-* Study **device sizing impact** on **switching threshold** and **noise margins**
+* Study **device sizing impact** on **switching threshold** and noise margins
 * Evaluate inverter **robustness** under variations
 * Connect device-level behavior to **STA margins and critical path timing**
 
@@ -81,19 +81,19 @@ plot dc1.out vs in dc2.out vs in dc3.out vs in dc4.out vs in dc5.out vs in dc6.o
 
 ### 1️⃣ Device Variation – VTC
 
-<img width="1920" height="1080" alt="device_variation_vtc" src="YOUR_IMAGE_LINK_1" />
+<img width="1920" height="1080" alt="day_05_inv_supplyvariation_Wp1_Wn036" src="https://github.com/user-attachments/assets/d1022625-9c5a-4034-a2e2-707a06c429f4" />
 
 ### 2️⃣ Device Variation – Output
 
-<img width="1751" height="1035" alt="device_variation_output" src="YOUR_IMAGE_LINK_2" />
+<img width="1751" height="1035" alt="supplyvariation_output" src="https://github.com/user-attachments/assets/8b12b42f-a002-4af1-ac33-b1a5db975d8a" />
 
 ### 3️⃣ Supply Variation – VTC
 
-<img width="1920" height="1080" alt="supply_variation_vtc" src="YOUR_IMAGE_LINK_3" />
+<img width="1920" height="1080" alt="day5_pfet_idvgs_" src="https://github.com/user-attachments/assets/4887abc9-0d3b-45cf-96b9-ab20b4a7b5ed" />
 
 ### 4️⃣ Supply Variation – Output
 
-<img width="1751" height="1035" alt="supply_variation_output" src="YOUR_IMAGE_LINK_4" />
+<img width="1751" height="1035" alt="pfet_output" src="https://github.com/user-attachments/assets/7a6add77-27c2-45ba-be95-5ed82e6f5e6e" />
 
 ---
 
